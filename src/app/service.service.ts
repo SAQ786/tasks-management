@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 export class ServiceService {
 
   constructor(private http :HttpClient) { }
-  url:string =  "http://localhost:3000";
+  url:string =  "https://tasks-7oqq.onrender.com";
   getTask(){
     return this.http.get(this.url+"/task")
   }
