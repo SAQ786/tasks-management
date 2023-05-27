@@ -1,0 +1,14 @@
+<div class="container">
+    <div align="end" style="margin: 3%;">
+        <mat-icon mat-dialog-close>close</mat-icon>
+    </div>
+    <h1>Add Task</h1>
+    <div class="add-task" [formGroup]="addTaskform">
+        <mat-form-field>
+            <input matInput formControlName="title" placeholder="Add Title" required>
+            <mat-error *ngIf="addTaskform.controls['title'].hasError('required')">*Required</mat-error>
+        </mat-form-field>
+        <br/>
+        <button mat-button (click)="addTask()" mat-dialog-close>Add task</button>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+.add-task {
+    margin: 10%;
+}
+ h1 {
+    text-align: center;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+}
+
+.add-task button {
+    width: 140px;
+    height: 48px;
+    background: #F1F4F6;
+    border-radius: 4px;
+}
+.add-task .mat-mdc-form-field {
+    width: 100%;
+}
