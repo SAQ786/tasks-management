@@ -24,8 +24,8 @@ addTaskform!:FormGroup;
     }
     else{
     this.service.addTask(data).subscribe(()=>{
+      this.service.eventEmit(true);
       alert("Task Added Successfully");
-      window.location.reload()
     });
   }
   }

@@ -49,7 +49,7 @@
   .card-action{
     display: flex;
     align-items: center;
-    gap: 186%;
+    gap: 170%;
     margin-top: 30px;
   }
   .search {

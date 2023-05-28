@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceService {
-
+  event = new EventEmitter<boolean>();
   constructor(private http :HttpClient) { }
   url:string =  "https://tasks-7oqq.onrender.com";
   getTask(){
@@ -19,5 +19,8 @@ export class ServiceService {
   }
   changeStatus(id:number,data:any){
     return this.http.put(this.url+"/task/"+id,data);
+  }
+  eventEmit(event:boolean){
+    this.event.emit(event);
   }
 }

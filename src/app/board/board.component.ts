@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ServiceService } from '../service.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddTaskComponent } from '../add-task/add-task.component';
 
 @Component({
@@ -15,7 +15,11 @@ export class BoardComponent {
   constructor(public dialog: MatDialog, private service: ServiceService) { }
 
   ngOnInit() {
-    this.getTaskList()
+    this.getTaskList();
+    this.service.event.subscribe((res) => {
+      if(res)
+      this.getTaskList();
+      });
   }
 
   openDialog() {
@@ -35,8 +39,8 @@ export class BoardComponent {
 
   deleteTask(id: number) {
     this.service.deleteTask(id).subscribe(() => {
-      alert("Deleted sucessfully")
       this.getTaskList()
+      alert("Deleted sucessfully")
     })
   }
 
