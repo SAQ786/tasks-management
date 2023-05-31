@@ -44,7 +44,7 @@ export class BoardComponent {
   }
 
   //method to delete task from list
-  deleteTask(id : number,index : number) {
+  deleteTask(index : number) {
     this.tasks.splice(index,1);
   }
 
