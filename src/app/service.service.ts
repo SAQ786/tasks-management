@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ServiceService {
-  event = new EventEmitter<boolean>();
+  event = new EventEmitter<object>();
   constructor(private http :HttpClient) { }
   url:string =  "https://tasks-7oqq.onrender.com";
   getTask(){
@@ -18,9 +18,9 @@ export class ServiceService {
     return this.http.delete(this.url+"/task/"+id);  
   }
   changeStatus(id:number,data:any){
-    return this.http.put(this.url+"/task/"+id,data);
+    return this.http.put(this.url+"/task/"+ id, data);
   }
-  eventEmit(event:boolean){
+  eventEmit(event:object){
     this.event.emit(event);
   }
 }

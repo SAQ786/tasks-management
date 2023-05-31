@@ -1,91 +1,102 @@
 <div class="head">
-    <mat-grid-list cols="2" rowHeight="50px:12px">
-        <mat-grid-tile>
-          <input class="search" id="search" [(ngModel)]="taskSearch" (input)="searchTask()" placeholder="Search" type="search">
-          <mat-icon matSuffix class="search-button">search</mat-icon>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <button mat-button (click)="openDialog()" class="add-task"> <mat-icon matPrefix>add</mat-icon> Add task</button>
-        </mat-grid-tile>
-      </mat-grid-list>
+  <mat-grid-list cols="2" rowHeight="50px:12px">
+    <mat-grid-tile class="search-field">
+      <input class="search" id="search" [(ngModel)]="taskSearch" (input)="searchTask()" placeholder="Search"
+        type="search">
+      <mat-icon matSuffix class="search-button">search</mat-icon>
+    </mat-grid-tile>
+    <mat-grid-tile class="add-task-panel">
+      <button mat-button (click)="openDialog()" class="add-task"> <mat-icon matPrefix>add</mat-icon> Add task</button>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>
-<div class="board">
-    <div class="list">
-      <h2>Step 1</h2>
-      <div class="card" *ngFor="let task of tasks">
-        <mat-card *ngIf="task.status===0" class="example-card">
-            <div class="card-header">
-              <p>{{task.id}}</p>
-              <button style="color: #F52B2B;" mat-button (click)="deleteTask(task.id)"><mat-icon>delete</mat-icon>Delete</button>
-            </div>
-            <mat-card-content>
-              <p>{{task.title}}</p>
-            </mat-card-content>
-            <mat-card-actions align="end">
-              <div class="card-action">
-               <button mat-button (click)="updateTask(task,'arrow_forward')"><mat-icon>arrow_forward</mat-icon></button>
-              </div>
-            </mat-card-actions>
-          </mat-card>
-      </div>
+<div class="board" *ngIf="tasks.length">
+  <div class="list">
+    <h2>Step 1</h2>
+    <div class="card" *ngFor="let task of tasks; let i = index">
+      <mat-card *ngIf="task.status===0" class="example-card">
+        <div class="card-header">
+          <p>{{task.id}}</p>
+          <button style="color: #F52B2B;" mat-button
+            (click)="deleteTask(task.id,i)"><mat-icon>delete</mat-icon>Delete</button>
+        </div>
+        <mat-card-content>
+          <p>{{task.title}}</p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <div class="card-action flex-end">
+            <button mat-button (click)="updateTask(task,'arrow_forward')"><mat-icon>arrow_forward</mat-icon></button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
     </div>
-    <div class="list">
-        <h2>Step 2</h2>
-        <div class="card" *ngFor="let task of tasks">
-            <mat-card *ngIf="task.status===1" class="example-card">
-                <div class="card-header">
-                  <p>{{task.id}}</p>
-                   <button style="color: #F52B2B;" mat-button (click)="deleteTask(task.id)"><mat-icon>delete</mat-icon>Delete</button>
-                </div>
-                <mat-card-content>
-                  <p>{{task.title}}</p>
-                </mat-card-content>
-                <mat-card-actions>
-                  <div class="card-action">
-                    <button mat-button (click)="updateTask(task,'arrow_backward')"><mat-icon>arrow_backward</mat-icon></button>
-                  <button mat-button (click)="updateTask(task,'arrow_forward')"><mat-icon>arrow_forward</mat-icon></button>
-                  </div>
-                </mat-card-actions>
-              </mat-card>
-        </div>
-      </div>
-      <div class="list">
-        <h2>Step 3</h2>
-        <div class="card" *ngFor="let task of tasks">
-            <mat-card *ngIf="task.status===2" class="example-card">
-                <div class="card-header">
-                  <p>{{task.id}}</p>
-                   <button style="color: #F52B2B;" mat-button (click)="deleteTask(task.id)"><mat-icon>delete</mat-icon>Delete</button>
-                </div>
-                <mat-card-content>
-                  <p>{{task.title}}</p>
-                </mat-card-content>
-                <mat-card-actions>
-                  <div class="card-action">
-                    <button mat-button  (click)="updateTask(task,'arrow_backward')"><mat-icon>arrow_backward</mat-icon></button>
-                 <button mat-button (click)="updateTask(task,'arrow_forward')"><mat-icon>arrow_forward</mat-icon></button>
-                  </div>
-                </mat-card-actions>
-              </mat-card>
-        </div>
-      </div>
-      <div class="list">
-        <h2>Step 4</h2>
-        <div class="card" *ngFor="let task of tasks">
-            <mat-card *ngIf="task.status===3" class="example-card">
-                <div class="card-header">
-                  <p>{{task.id}}</p>
-                   <button style="color: #F52B2B;" mat-button (click)="deleteTask(task.id)"><mat-icon>delete</mat-icon>Delete</button>
-                </div>
-                <mat-card-content>
-                  <p>{{task.title}}</p>
-                </mat-card-content>
-                <mat-card-actions align="start">
-                  <div class="card-action">
-                    <button mat-button (click)="updateTask(task,'arrow_backward')"><mat-icon>arrow_backward</mat-icon></button>
-                  </div>
-                </mat-card-actions>
-              </mat-card>
-        </div>
-      </div>
   </div>
+  <div class="list">
+    <h2>Step 2</h2>
+    <div class="card" *ngFor="let task of tasks; let i = index">
+      <mat-card *ngIf="task.status===1" class="example-card">
+        <div class="card-header">
+          <p>{{task.id}}</p>
+          <button style="color: #F52B2B;" mat-button
+            (click)="deleteTask(task.id,i)"><mat-icon>delete</mat-icon>Delete</button>
+        </div>
+        <mat-card-content>
+          <p>{{task.title}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="card-action">
+            <button mat-button (click)="updateTask(task,'arrow_backward')"><mat-icon>arrow_backward</mat-icon></button>
+            <button mat-button (click)="updateTask(task,'arrow_forward')"><mat-icon>arrow_forward</mat-icon></button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+  <div class="list">
+    <h2>Step 3</h2>
+    <div class="card" *ngFor="let task of tasks; let i = index">
+      <mat-card *ngIf="task.status===2" class="example-card">
+        <div class="card-header">
+          <p>{{task.id}}</p>
+          <button style="color: #F52B2B;" mat-button
+            (click)="deleteTask(task.id,i)"><mat-icon>delete</mat-icon>Delete</button>
+        </div>
+        <mat-card-content>
+          <p>{{task.title}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="card-action">
+            <button mat-button (click)="updateTask(task,'arrow_backward')"><mat-icon>arrow_backward</mat-icon></button>
+            <button mat-button (click)="updateTask(task,'arrow_forward')"><mat-icon>arrow_forward</mat-icon></button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+  <div class="list">
+    <h2>Step 4</h2>
+    <div class="card" *ngFor="let task of tasks; let i = index">
+      <mat-card *ngIf="task.status===3" class="example-card">
+        <div class="card-header">
+          <p>{{task.id}}</p>
+          <button style="color: #F52B2B;" mat-button
+            (click)="deleteTask(task.id,i)"><mat-icon>delete</mat-icon>Delete</button>
+        </div>
+        <mat-card-content>
+          <p>{{task.title}}</p>
+        </mat-card-content>
+        <mat-card-actions align="start">
+          <div class="card-action">
+            <button mat-button (click)="updateTask(task,'arrow_backward')"><mat-icon>arrow_backward</mat-icon></button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="!tasks.length">
+  <div class="centered-div">
+    <p>No task found</p>
+    <p>Please add task! </p>
+  </div>
+</div>

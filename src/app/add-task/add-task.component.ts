@@ -23,10 +23,8 @@ addTaskform!:FormGroup;
       alert("Enter valid details");
     }
     else{
-    this.service.addTask(data).subscribe(()=>{
-      this.service.eventEmit(true);
+      this.service.eventEmit(data);
       alert("Task Added Successfully");
-    });
   }
   }
 }
